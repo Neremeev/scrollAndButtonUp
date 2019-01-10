@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <style>
+    /*для всего документа*/
+    html {
+      scroll-behavior: smooth;
+    }
+    /*для section*/
+    section {
+      scroll-behavior: smooth;
+    }
+    .color {
+      width: 500px;
+      height: 800px;
+      font-size: 30px;
+      text-align: center;
+      padding: 100px;
+      color: #ffffff;
+    }
+    .color1 {
+      background: #cb4d4d;
+    }
+    .color2 {
+      background: #758dc3;
+    }
+    .color3 {
+      background: #669f66;
+    }
+    .color4 {
+      background: #c1c477;
+    }
+    .color5 {
+      background: #a873a6;
+    }
+
+    #top {
+      position: fixed;
+      left: 600px;
+      bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#anchor1">linl1</a>
+    <a href="#anchor2">linl2</a>
+    <a href="#anchor3">linl3</a>
+    <a href="#anchor4">linl4</a>
+    <a href="#anchor5">linl5</a>
+  </nav>
+
+  <section>
+    <div id='anchor1' class="color color1">THIS IS BLOCK1</div>
+    <div id='anchor2' class="color color2">THIS IS BLOCK2</div>
+    <div id='anchor3' class="color color3">THIS IS BLOCK3</div>
+    <div id='anchor4' class="color color4">THIS IS BLOCK4</div>
+    <div id='anchor5' class="color color5">THIS IS BLOCK5</div>
+  </section>
+
+  <button id="top">Top</button>
+
+  <script>
+
+      window.onscroll = function() {
+          var scrollElem = document.getElementById("top");
+          if (window.pageYOffset) {
+              scrollElem.style.opacity = "1";
+          } else {
+              scrollElem.style.opacity = "0";
+          }
+      };
+
+      window.onload = function(){
+
+          var scrollElem = document.getElementById("top");
+          if (window.pageYOffset) {
+              scrollElem.style.opacity = "1";
+          } else {
+              scrollElem.style.opacity = "0";
+          }
+
+
+          //window.scrollTo(x,y)
+          var scrolled;
+          var timer;
+
+          document.getElementById('top').onclick = function(){
+              scrolled = window.pageYOffset;
+              //window.scrollTo(0,0);
+              scrollToTop();
+          }
+          function scrollToTop(){
+              if (scrolled > 0) {
+                  window.scrollTo(0, scrolled);
+                  scrolled = scrolled - 100; //100 - скорость прокрутки
+                  timer = setTimeout(scrollToTop, 10);
+              }
+              else {
+                  clearTimeout(timer);
+                  window.scrollTo(0,0);
+              }
+          }
+      }
+
+  </script>
+
+</body>
+</html>
